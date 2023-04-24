@@ -20,7 +20,7 @@ cI=cref
 %
 %blood oxygen concentration
 %at full hemoglobin saturation: 
-cstar=1.5*cref
+%cstar=cref
 %cstar=4*(concentration of hemoglobin 
 %in blood expressed in moles/liter)
 %

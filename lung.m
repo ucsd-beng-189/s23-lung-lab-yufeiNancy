@@ -6,7 +6,7 @@ global Pstar cstar n maxcount M Q camax RT cI;
 % cvsolve
 % outchecklung
 % %% TASK 3
-% % 
+% 
 % % PV = nRT 
 % % PI=RT*cI!
 % % cabar=Q' *ca/sum(Q)
@@ -110,11 +110,79 @@ global Pstar cstar n maxcount M Q camax RT cI;
 % legend('cAbar' ,'cabar', 'cv' );
 
 
-%%Task 6&7
-%blood oxygen 
+% %% Task 6&7
+% %blood oxygen 
+% oxygen_h = 22.4;
+% i =0;
+% for Altitude = 0:1:71
+%     beta = 0.9;
+%     i = i+1;
+%     cref = 0.2/((oxygen_h+ Altitude)*(310/273));
+%     setup_lung
+%     cvsolve
+%     outchecklung
+% 
+%     PAbar_vec(i) = PAbar;
+%     Pabar_vec(i) = Pabar;
+%     Pv_vec(i) = Pv;
+%     cAbar_vec(i) = cAbar;
+%     cabar_vec(i) = cabar;
+%     cv_vec(i) = cv;
+% 
+%     Altitude_vec(i) = Altitude;
+% end
+
+
+
+% %% Task 6/8 graph
+% figure;
+% plot(Altitude_vec,PAbar_vec);
+% hold on
+% plot(Altitude_vec,Pabar_vec);
+% plot(Altitude_vec,Pv_vec);
+% hold off
+% legend('PAbar' ,'Pabar', 'Pv' );
+% xlabel('Altitude(m）')
+% ylabel('pressures(mmHg)')
+% title('inspired oxyen conc. vs PAbar ,Pabar, Pv, ')
+% 
+% figure;
+% plot(Altitude_vec,cAbar_vec);
+% hold on
+% plot(Altitude_vec,cabar_vec);
+% plot(Altitude_vec,cv_vec);
+% hold off
+% legend('PAbar' ,'Pabar', 'Pv' );
+% xlabel('Altitude(m）')
+% ylabel('conc.(mol/L')
+% title('inspired oxyen conc. vs cAbar, cabar, cv')
+% legend('cAbar' ,'cabar', 'cv' );
+
+% %% task 9
+% cref=0.2/(22.4*(310/273))
+% i =0;
+% for cstar =cref:-0.001:0
+%     beta = 0.1;
+%     i = i+1;
+%     setup_lung
+%     cvsolve
+%     outchecklung
+% 
+%     PAbar_vec(i) = PAbar;
+%     Pabar_vec(i) = Pabar;
+%     Pv_vec(i) = Pv;
+%     cAbar_vec(i) = cAbar;
+%     cabar_vec(i) = cabar;
+%     cv_vec(i) = cv;
+% 
+% end
+
+%task 10
+
 oxygen_h = 22.4;
 i =0;
-for Altitude = 0:1:124
+cstar = 0.0020;
+for Altitude = 0:1:90   
     i = i+1;
     cref = 0.2/((oxygen_h+ Altitude)*(310/273));
     setup_lung
@@ -127,13 +195,10 @@ for Altitude = 0:1:124
     cAbar_vec(i) = cAbar;
     cabar_vec(i) = cabar;
     cv_vec(i) = cv;
-    
+
     Altitude_vec(i) = Altitude;
 end
-
-
-
-%% Task 6 graph
+%% Task 6/8 graph
 figure;
 plot(Altitude_vec,PAbar_vec);
 hold on
@@ -156,5 +221,3 @@ xlabel('Altitude(m）')
 ylabel('conc.(mol/L')
 title('inspired oxyen conc. vs cAbar, cabar, cv')
 legend('cAbar' ,'cabar', 'cv' );
-
-
