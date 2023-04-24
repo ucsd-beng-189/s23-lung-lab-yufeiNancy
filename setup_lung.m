@@ -2,7 +2,7 @@
 %heterogeneity parameter (0<=beta<=1):
 %beta=0 for homogenous lung
 %beta=1 for no ventilation/perfusion correlation
-%%beta=0.5
+beta=0.5
 %
 %number of iterations used in bisection:
 maxcount=20
@@ -11,7 +11,7 @@ maxcount=20
 n=100
 %
 %reference oxygen concentration (moles/liter):
-cref=0.2/(22.4*(310/273))
+%cref=0.2/(22.4*(310/273))
 %cref=concentration of oxygen 
 %in air at sea level at body temperature
 %
@@ -20,12 +20,12 @@ cI=cref
 %
 %blood oxygen concentration
 %at full hemoglobin saturation: 
-cstar=cref
+cstar=1.5*cref
 %cstar=4*(concentration of hemoglobin 
 %in blood expressed in moles/liter)
 %
 %rate of oxygen consumption (moles/minute):
-%%M=0.25*cref*5.6
+M=0.25*cref*5.6
 %
 %oxygen partial pressure 
 %at which hemoglobin is half-saturated:
@@ -35,7 +35,7 @@ Pstar=25
 %(mmHg*liters/mole):
 RT=760*22.4*(310/273)
 %
-%"simple sol'n formul"oxygen partial pressure 
+%oxygen partial pressure 
 %in the inspired air (mmHg):
 PI=RT*cI
 %
@@ -63,13 +63,12 @@ av=(a1+a2)/2;
 VA=VAbar*(a1*beta+av*(1-beta));
 Q = Qbar*(a2*beta+av*(1-beta));
 r=VA./Q;
-% % figure(1)
-% % plot(Q,VA,'.')
+% figure(1)
+% plot(Q,VA,'.')
 
 %find actual values of 
 %VAtotal, Qtotal, VAbar, and Qbar:
 VAtotal=sum(VA)
 Qtotal =sum(Q)
 VAbar=VAtotal/n
-Qbar= Qtotal/n
-
+ Qbar= Qtotal/n
